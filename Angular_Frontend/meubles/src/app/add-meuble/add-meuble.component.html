@@ -1,0 +1,76 @@
+<div class="container">
+  <div>
+    <h2>Ajouter un meuble :</h2>
+  </div>
+  <form class="from">
+    <table align="center" width="100%">
+      <tr hidden>
+
+        <th> <label>ID meuble</label></th>
+        <td><input
+            type="text"
+            [(ngModel)]="newmeuble.idmeuble"
+            name="idmeuble"
+            class="form-control"
+            /></td>
+
+      </tr>
+      <tr>
+        <th><label>Nom meuble</label></th>
+        <td><input
+            type="text"
+            [(ngModel)]="newmeuble.nommeuble" #name="ngModel"
+            name="nommeuble"
+            class="form-control" required minlength="4"
+            />
+          <span *ngIf="name.invalid && name.touched"
+            class="text-danger">
+            Nom meuble Invalide*
+          </span></td>
+      </tr>
+
+      <tr>
+        <th><label>type</label></th>
+        <td>
+          <select
+            class="form-control form-control-lg"
+            id="idtype"
+            name="idtype"
+            [(ngModel)]="newIdtype" required #select="ngModel">
+            <option *ngFor="let type of types" [value]="type.idtype">
+              {{ type.nomtype }}
+            </option>
+          </select>
+          <span *ngIf="select.invalid && select.touched "
+            class="text-danger">
+            Choisir type*
+          </span></td>
+      </tr>
+
+      <tr> <th><label>Date Ajout</label></th>
+        <td><input
+            type="date"
+            [(ngModel)]="newmeuble.dateAjout"
+            name="dateAjout"
+            class="form-control" required #date="ngModel"
+            />
+          <span *ngIf="date.invalid && date.touched"
+            class="text-danger">
+            Saisir date*
+          </span></td>
+      </tr>
+
+
+      <tr> <th style="text-align: center;" colspan="2"><button type="submit"
+            (click)="addmeuble()" class="btn btn-success">
+            Ajouter
+          </button>
+          <a href="/meubles"><button type="button" class="btn btn-secondary">
+              Annuler
+            </button></a></th></tr>
+
+      <h3>{{ message }}</h3>
+
+    </table>
+  </form>
+</div>

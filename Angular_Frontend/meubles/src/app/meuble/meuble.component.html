@@ -1,0 +1,33 @@
+<br>
+<div class="container">
+  <h2>Liste meubles :</h2>
+<div class="card shadow mb-4">
+  <form class="form-inline">
+    <div class="form-group mx-sm-4 mb-1 mt-1 ">
+    <label><b>Rechercher Par Nom meuble : </b>&nbsp;</label>
+    <input type="search" class="form-control" #searchTerm (keyup)="onKeyUp(searchTerm.value)">
+   <!-- <button type="submit" (click)="rechercherAnims()" class="btn btn-primary mb-2 ml-2">Rechercher</button>
+    <a href="/meubles"><button type="button" class="btn btn-warning mb-2 ml-2">Annuler</button></a>-->
+    </div>
+    </form>
+<div class="card-body">
+<table class="table table-striped">
+  <tr><th style="text-align:center;" colspan="6">meubles</th></tr>
+<tr> <th>Id</th><th>Nom</th> <th>type</th><th>Date Ajout</th> <th colspan="2">Actions</th></tr>
+<tbody *ngFor="let meuble of meubles | paginate: { itemsPerPage: 3, currentPage: page,
+totalItems:count}; let i=index">
+<tr>
+<td>{{meuble.idmeuble}}</td>
+<td>{{meuble.nommeuble}}</td>
+<td>{{meuble.type.nomtype}}</td>
+<td>{{meuble.dateAjout | date:'dd/MM/yyyy'}}</td>
+<td><a class="btn btn-danger" (click)="supprimermeubles(meuble)">Supprimer</a></td>
+<td><a class="btn btn-success" [routerLink]="['/updatemeuble',meuble.idmeuble]">Modifier</a></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<pagination-controls (pageChange)="page=$event"></pagination-controls>
+</div>
+</div>
+</div>
